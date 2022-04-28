@@ -1,0 +1,3 @@
+[submodule "NPproject"]
+	path = NPproject
+	url = https://github.com/Galazard10/NPproject.git

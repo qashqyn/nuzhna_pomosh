@@ -1,0 +1,8 @@
+#cabinet{
+    display: flex;
+    &>.content{
+        flex-grow: 1;
+        background: #E5E4E4;
+        padding: 20px;
+    }
+}
