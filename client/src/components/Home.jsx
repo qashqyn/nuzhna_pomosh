@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Form, Button, Container, Card, Carousel, Row, Col, Image } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
 
 import '../styles/home.scss';
 
@@ -18,8 +17,8 @@ const Home = () => {
     return (
         <div id="home">
             <div className="top">
-                <img src={HandsImg} id="backgroundHands1" className="hands"/>
-                <img src={HandsImg} id="backgroundHands2" className="hands"/>
+                <img src={HandsImg} id="backgroundHands1" className="hands" alt="hands1"/>
+                <img src={HandsImg} id="backgroundHands2" className="hands" alt="hands2"/>
                 <div className="content">
                     <h1>Қайырымдылық қорларын іздеу қосымшасы</h1>
                     <Form onSubmit={search} className="search">

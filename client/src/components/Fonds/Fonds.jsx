@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getFonds } from '../../actions/fonds';
+import { getFonds, searchFonds } from '../../actions/fonds';
 
 import { Spinner, Row, Col, Container, Form, Button } from "react-bootstrap";
 
@@ -20,21 +20,12 @@ const Fonds = () => {
     const [ formData, setFormData ] = useState(formInitial);
     const [ selectedCat, setSelectedCat ] = useState([]);
 
-    // const isLoading =false;
-    // const fonds = [{
-    //     id: 1,
-    //     title: 'АдВита',
-    // },
-    // {
-    //     id: 2,
-    //     title: 'Самұрық',
-    // }];
     const dispatch = useDispatch();
 
     const search = (e) =>{
         e.preventDefault();
-        // setFormData({...formData, categories: selectedCat});
-        // console.log({...formData, categories: selectedCat});
+
+        dispatch(searchFonds(formData.search, formData.location, selectedCat.join(',')))
     }
     const chooseCategory = (e) =>{
         // e.preventDefault();

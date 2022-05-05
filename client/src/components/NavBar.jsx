@@ -6,14 +6,13 @@ import { LinkContainer } from "react-router-bootstrap";
 
 import '../styles/navbar.scss';
 import Logo from '../images/logo.png';
-import { Link } from "react-router-dom";
 
 const NavBar = () => {
     return (
         <Navbar collapseOnSelect>
             <LinkContainer to="/">
                 <Navbar.Brand>
-                    <img src={Logo} height={64}/>
+                    <img src={Logo} height={64} alt="Жан Ашыр"/>
                 </Navbar.Brand>
             </LinkContainer>
             <Navbar.Toggle aria-controls="navbar" />

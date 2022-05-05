@@ -9,7 +9,7 @@ const postsReducers = (state = { isLoading: true, posts: [] }, action) => {
         case FETCH_ALL:
             return { ...state, posts: action.payload};
         case FETCH_ONE:
-            return { ...state, singlePost: action.payload };
+            return { ...state, post: action.payload };
         case CREATE:
             return {...state, posts: [ ...state.posts, action.payload] };
         case UPDATE:

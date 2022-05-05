@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 
-import { Button, Col, Container, Form, Image, Nav, Row } from 'react-bootstrap';
+import { Button, Col, Container, Form, Image, Row } from 'react-bootstrap';
 import { LinkContainer } from "react-router-bootstrap";
  
 import '../styles/footer.scss';
