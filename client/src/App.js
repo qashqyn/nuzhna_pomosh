@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'jquery/dist/jquery.min.js';
@@ -17,14 +17,27 @@ import Cabinet from './components/Cabinet/Cabinet';
 import Profile from './components/Cabinet/Profile';
 import Donation from './components/Cabinet/Donation';
 import AddFond from './components/Cabinet/admin/AddFond';
+import Auth from './components/Auth/Auth';
+
+import Events from './components/Events/Events';
+import EventDetails from './components/Events/EventDetails';
+import AddEvent from './components/Events/AddEvent';
 
 const App = () => {
     return (
         <BrowserRouter>
-            <Navbar />
-            <div className='main'>
-                <Routes>
-                    <Route path="/"  element={<Home />} />
+            <Routes>
+                <Route path='/auth' exact element={<Auth /> }/>
+                <Route path="/"  element={
+                    <>
+                        <Navbar/>
+                        <div className='main'>
+                            <Outlet/>
+                        </div>
+                        <Footer />
+                    </>
+                } >
+                    <Route path='/' exact element={<Home />} />
                     <Route path='/cabinet' element={<Cabinet />} >
                         <Route path='donation' element={<Donation />} />
                         <Route path='profile' element={<Profile />} />
@@ -35,10 +48,12 @@ const App = () => {
                     <Route path="/fonds/:id" element={<FondDetails />} />
                     <Route path="/contacts" exact element={<Contacts /> } />
                     <Route path='/partners' exact element={<Partners /> }/>
-                    <Route path='*' element={<Page404 />}/>
-                </Routes>
-            </div>
-            <Footer />
+                    <Route path='/events' exact element={<Events />} />
+                    <Route path='/events/add' exact element={<AddEvent />} />
+                    <Route path='/events/:id' element={<EventDetails />} /> 
+                </Route>
+                <Route path='*' element={<Page404 />}/>
+            </Routes>
         </BrowserRouter>
     );
 };

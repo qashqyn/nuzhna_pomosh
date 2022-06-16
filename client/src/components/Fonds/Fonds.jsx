@@ -11,12 +11,12 @@ import FondCard from "./FondCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const categories = ['Барлығына','Ересектерге','Балаларға','Әйелдерге','Жануарлар','Қоғамға','Жасөспірімдерге','Қарттарға','Отбасыларға','Экологияға']
-const locations = ['Нур-Султан', 'Алма-ата'];
+const locations = ["Алматы", "Нұр-Сұлтан", "Шымкент", "Ақтөбе", "Қарағанды", "Тараз", "Павлодап", "Семей", "Өскемен", "Қызылорда", "Орал", "Қостанай", "Атырау", "Петропавл", "Ақтау", "Көкшетау", "Талдықорған"];
 
 const formInitial = {search: '', location: ''};
 
 const Fonds = () => {
-    const { posts:fonds, isLoading } = useSelector((state) => state.posts)
+    const { fonds, isLoading } = useSelector((state) => state.posts)
     const [ formData, setFormData ] = useState(formInitial);
     const [ selectedCat, setSelectedCat ] = useState([]);
 
@@ -25,7 +25,10 @@ const Fonds = () => {
     const search = (e) =>{
         e.preventDefault();
 
-        dispatch(searchFonds(formData.search, formData.location, selectedCat.join(',')))
+        if(formData.search || formData.location || selectedCat.length>0)
+            dispatch(searchFonds(formData.search, formData.location, selectedCat.join(',')))
+        else
+            dispatch(getFonds());
     }
     const chooseCategory = (e) =>{
         // e.preventDefault();
@@ -45,7 +48,7 @@ const Fonds = () => {
     }, [dispatch]);
 
     return (
-        <Container>
+        <Container id="fonds">
             <h1>Тексерілген қорды таңдаңыз</h1>
             <p>Біз бүкіл Қазақстан бойынша {isLoading ? (<span>...</span>) : fonds.length} қайырымдылық ұйымының жұмысын қолдаймыз.</p>
 
@@ -104,11 +107,13 @@ const Fonds = () => {
 
            
             <div className="fonds mt-3 mb-3">
-                {isLoading ? (
-                    <Spinner animation="border" role="status">
-                        <span className="visually-hidden">Загрузка...</span>
-                    </Spinner>
-                ) : (
+                {(isLoading || !fonds) ? (
+                    <div className="text-center p-5">
+                        <Spinner animation="border" role="status">
+                            <span className="visually-hidden">Загрузка...</span>
+                        </Spinner>
+                    </div>
+                ) : ((!!fonds && fonds.length>0) ? (
                     <>
                         <Row xs={1} md={2} lg={3}>
                             {fonds.map((fond) => (
@@ -118,7 +123,14 @@ const Fonds = () => {
                             ))}
                         </Row>
                     </>
-                )}
+                    ):(
+                        <>
+                            <div className="text-center p-5">
+                                Қорлар жоқ
+                            </div>
+                        </>
+                    ))
+                }
             </div>
         </Container>
     );
