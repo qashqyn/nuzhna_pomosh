@@ -1,0 +1,50 @@
+
+.countbar{
+    background-color: white;
+    padding: 30px;        
+    border-radius: 5px;
+    .nav-item{
+        display: flex;
+        &:first-of-type{
+            border-bottom: rgba($color: #9999, $alpha: .2) solid 1px;
+            padding-bottom: 30px;
+            margin-bottom: 30px;
+        }
+        p{
+            padding: 0;
+            margin: 0;
+            font-size: 18px;
+            color: #999999;
+        }
+        span{
+            font-size: 20px;
+            font-weight: 700;
+        }
+    }
+}
+.blocks{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 72px;
+    .block{
+        background-color: #fff;
+
+        padding: 30px;
+        border-radius: 5px;
+        .block-header{
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: rgba($color: #9999, $alpha: .2) solid 1px;
+            margin-bottom: 20px;
+        }
+        .donation, .event{
+            display: flex;
+            .date{
+                margin-left: auto;
+            }
+        }
+    }
+}

@@ -36,6 +36,18 @@ export const getEventsByFondId = (fondId) => async(dispatch) => {
     }
 }
 
+export const getEventsByUserId = (userId) => async(dispatch) => {
+    try {
+        // dispatch({type: START_LOADING});
+        const data = await api.fetchEventsByUserId(userId);
+
+        dispatch({type: FETCH_ALL_EVENTS, payload: data});
+        // dispatch({type: END_LOADING});
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 
 export const createEvent = (event, fondId, userId) => async (dispatch)=>{
     try {

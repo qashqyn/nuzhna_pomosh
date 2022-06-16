@@ -33,12 +33,12 @@ export const getDonationsByUserId = (userId) => async(dispatch) =>{
 
 
 
-// export const donate = (fondId, eventId) => async (dispatch)=>{
-//     try {
-//         const data = await api.createEvent(fondId, userId);
+export const donate = (donation, fondId, eventId, userId) => async (dispatch)=>{
+    try {
+        const data = await api.donate(donation, fondId, eventId, userId);
 
-//         dispatch({type: DONATE, payload: data});
-//     } catch (error) {
-//         console.log(error); 
-//     }
-// }
+        dispatch({type: DONATE, payload: data});
+    } catch (error) {
+        console.log(error); 
+    }
+}

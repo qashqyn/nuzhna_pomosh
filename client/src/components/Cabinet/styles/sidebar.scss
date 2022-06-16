@@ -1,4 +1,13 @@
 #sidebar{
-    height: 100%;
     background: #fff;
+    padding: 20px 30px;
+    .nav-link{
+        color: black;
+        font-weight: 600;
+        font-size: 16px;
+        padding: 10px 0;
+        &:hover{
+            color: #e65639;
+        }
+    }
 }

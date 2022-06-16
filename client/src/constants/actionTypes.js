@@ -20,3 +20,6 @@ export const CLEAR_USER_EXISTS = 'CLEAR_USER_EXISTS';
 
 export const START_LOADING = 'START_LOADING';
 export const END_LOADING = 'END_LOADING';
+
+export const CLEAR = 'CLEAR';
+export const CLEAR_STATUS = 'CLEAR_STATUS';
