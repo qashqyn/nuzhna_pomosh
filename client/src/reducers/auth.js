@@ -1,4 +1,4 @@
-import { AUTH, LOGOUT, USER_EXISTS,CLEAR_USER_EXISTS } from '../constants/actionTypes';
+import { AUTH, LOGOUT, USER_EXISTS,CLEAR_USER_EXISTS, UPDATE_USER } from '../constants/actionTypes';
 
 const authReducer = (state = {authData: null, userExists: null}, action) => {
     switch(action.type){
@@ -14,6 +14,8 @@ const authReducer = (state = {authData: null, userExists: null}, action) => {
             return { ...state, authData: null, userExists: null};
         case USER_EXISTS:
             return { ...state, userExists: action?.data };
+        case UPDATE_USER:
+            return {...state, update_status: action.data.staus};
         case CLEAR_USER_EXISTS: 
             return {...state, userExists: null};
         // case UPDATE_USER:

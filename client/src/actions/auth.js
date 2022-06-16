@@ -1,4 +1,4 @@
-import { AUTH, USER_EXISTS } from '../constants/actionTypes';
+import { AUTH, UPDATE_USER, USER_EXISTS } from '../constants/actionTypes';
 import * as api from '../api';
 
 export const isExists = (email) => async (dispatch) => {
@@ -34,3 +34,12 @@ export const signUp = (formData, navigate) => async (dispatch) => {
         console.log(error);
     }
 };
+
+export const updateUser = (formData) => async (dispatch) =>{
+    try {
+        const { data } = await api.updateUser(formData);
+        dispatch({type: AUTH, data});
+    } catch (error) {
+        console.log(error);
+    }
+}

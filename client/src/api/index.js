@@ -20,7 +20,8 @@ API.interceptors.request.use((req) => {
 export const fetchFonds = () => API.get('/fonds');
 export const searchFonds = (search, location, category) => API.get(`/fonds?search=${search}&location=${location}&category=${category}`);
 export const fetchFondById = (id) => API.get(`/fonds/${id}`);
-export const createFond = async (fond) => API.post(`/add-fond`, fond);
+export const createFond = async (fond) => API.post(`/fonds/add-fond`, fond);
+export const updateFond = async (fond) => API.post(`/fonds/${fond.id}/update-fond`, fond);
 // EVENTS
 export const fetchEvents = () =>API.get('/events');
 export const fetchEventsByFondId = (fondId) =>API.get(`/events/fond/${fondId}`);
@@ -34,5 +35,6 @@ export const fetchDonationsByUserId = (userId) => API.get(`donations/user/${user
 export const donate = (donation, fondId, eventId, userId) =>API.post(`donations/add-donation?fondId=${fondId}${eventId ? `&eventId=${eventId}`: ''}${userId ? `&userId=${userId}`: ''}`, donation);
 // AUTH
 export const isExists = (email) => API.post(`/users/ifexists?email=${email}`);
+export const updateUser = (formData) => API.post(`/users/${formData.id}/update-user`, formData);
 export const signIn = (formData) => API.post('/login', formData);
 export const signUp = (formData) => API.post('/signup', formData);

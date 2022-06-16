@@ -5,7 +5,7 @@ const postsReducers = (state = { isLoading: true, fonds: [], events: [], fond: n
         case CLEAR:
             return { isLoading: true, fonds: [], events: [], fond: null, event: null, donations: null };
         case CLEAR_STATUS:
-            return {...state, donate_status: null};
+            return {...state, donate_status: null, fond_status: null, event_status: null};
         case START_LOADING:
             return { ...state, isLoading: true};
         case END_LOADING:
@@ -14,8 +14,9 @@ const postsReducers = (state = { isLoading: true, fonds: [], events: [], fond: n
             return { ...state, fonds: action.payload.data};
         case FETCH_ONE_FOND:
             return { ...state, fond: action.payload.data };
+        case UPDATE_FOND:
         case CREATE_FOND:
-            return {...state, fonds: [ ...state.fonds, action.payload.data] };
+            return {...state, fond_status: action.payload.status };
         case DELETE_FOND:
             return { ...state, fonds : state.fonds.filter((fond) => fond._id !== action.payload._id)};
         
@@ -24,7 +25,7 @@ const postsReducers = (state = { isLoading: true, fonds: [], events: [], fond: n
         case FETCH_ONE_EVENT:
             return { ...state, event: action.payload.data };
         case CREATE_EVENT:
-            return {...state, events: [ ...state.events, action.payload.data], status: action.payload.status };
+            return {...state, event_status: action.payload.status };
         case DELETE_EVENT:
             return { ...state, events : state.events.filter((event) => event._id !== action.payload._id)};
 

@@ -16,6 +16,7 @@ export const DONATE = 'DONATE';
 export const AUTH = 'AUTH';
 export const LOGOUT = 'LOGOUT';
 export const USER_EXISTS = 'USER_EXISTS';
+export const UPDATE_USER = 'UPDATE_USER';
 export const CLEAR_USER_EXISTS = 'CLEAR_USER_EXISTS';
 
 export const START_LOADING = 'START_LOADING';

@@ -1,4 +1,4 @@
-import { CREATE_FOND, END_LOADING, FETCH_ALL_FONDS, FETCH_ONE_FOND, START_LOADING } from "../constants/actionTypes";
+import { CREATE_FOND, END_LOADING, FETCH_ALL_FONDS, FETCH_ONE_FOND, START_LOADING, UPDATE_FOND } from "../constants/actionTypes";
 import * as api from '../api';
 import { getEventsByFondId } from "./events";
 
@@ -31,6 +31,15 @@ export const createFond = (fond) => async (dispatch) => {
         const data = await api.createFond(fond);
 
         dispatch({type: CREATE_FOND, payload: data});
+    } catch (error) {
+        console.log(error);
+    }
+}
+export const updateFond = (fond) => async (dispatch) => {
+    try {
+        const data = await api.updateFond(fond);
+
+        dispatch({type: UPDATE_FOND, payload: data});
     } catch (error) {
         console.log(error);
     }

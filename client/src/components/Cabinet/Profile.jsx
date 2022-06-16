@@ -15,6 +15,7 @@ import MonthlyDonationIcon from '../../images/monthly.svg';
 import EventGreensIcon from '../../images/events_green.svg';
 
 import './styles/profile.scss';
+import { LinkContainer } from 'react-router-bootstrap';
 
 const Profile = () => {
     const [profile, setProfile] = useState(JSON.parse(localStorage.getItem('profile')));
@@ -23,6 +24,8 @@ const Profile = () => {
     const [donationsCount, setDonationsCount] = useState({permanent: 0, monthly: 0});
 
     const dispatch = useDispatch();
+
+    const now = moment(new Date());
 
     useEffect(()=>{
         if(profile.user && profile.user.id){
@@ -86,9 +89,10 @@ const Profile = () => {
                             {donationsCount.monthly === 0 ? (
                                 <p>Садақа жоқ</p>
                             ) : donations.map((donation) => donation.type === 'monthly' && (
-                                    <div className='donation'>
+                                    <div className='donation' key={donation.id}>
+                                        <span className='fond'>{donation.fond.title}</span>        
                                         <span className='amount'>{donation.amount} ₸</span>        
-                                        <span className='date'>{donation.date}</span>        
+                                        <span className='date'>Әр айдын {moment(donation.date).format('DD')} күні</span>        
                                     </div>
                                 ))
                             }
@@ -105,8 +109,9 @@ const Profile = () => {
                         <div className='donations'>
                             {donationsCount.permanent === 0 ? (
                                 <p>Садақа жоқ</p>
-                            ) : donations.map((donation, key) => donation.type === 'permanent' && (
-                                    <div className='donation' key={key}>
+                            ) : donations.map((donation) => donation.type === 'permanent' && (
+                                    <div className='donation'  key={donation.id}>
+                                        <span className='fond'>{donation.fond.title}</span>        
                                         <span className='amount'>{donation.amount} ₸</span>        
                                         <span className='date'>{moment(donation.date).format('HH.mm DD.MM.YYYY')}</span>        
                                     </div>
@@ -126,10 +131,12 @@ const Profile = () => {
                             {!(events && events.length > 0) ? (
                                 <p>Алымдар жоқ</p>
                             ) : events.map((event, key) => (
-                                    <div className='event' key={key}>
-                                        <span className='amount'>{event.title}</span>        
-                                        <span className='date'>{moment(event.date).format('HH.mm DD.MM.YYYY')}</span>        
-                                    </div>
+                                    <LinkContainer to={`/events/${event.id}`} key={key}>
+                                        <div className='event'>
+                                            <span className='title'>{event.title}</span>        
+                                            <span className={`status ${moment(event.date) > now}`}>{moment(event.date) > now ? 'Қаражат жинау жүріп жатыр' : 'Жинақ аяқталды'}</span>        
+                                        </div>
+                                    </LinkContainer>
                                 ))
                             }
                         </div>

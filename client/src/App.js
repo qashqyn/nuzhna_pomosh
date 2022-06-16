@@ -15,13 +15,14 @@ import Partners from './components/Partners';
 import FondDetails from './components/Fonds/FondDetails';
 import Cabinet from './components/Cabinet/Cabinet';
 import Profile from './components/Cabinet/Profile';
-import Donation from './components/Cabinet/Donation';
 import AddFond from './components/Cabinet/admin/AddFond';
 import Auth from './components/Auth/Auth';
 
 import Events from './components/Events/Events';
 import EventDetails from './components/Events/EventDetails';
 import AddEvent from './components/Events/AddEvent';
+import Settings from './components/Cabinet/Settings';
+import Donation from './components/Cabinet/Donation';
 
 const App = () => {
     return (
@@ -39,9 +40,10 @@ const App = () => {
                 } >
                     <Route path='/' exact element={<Home />} />
                     <Route path='/cabinet' element={<Cabinet />} >
-                        <Route path='donation' element={<Donation />} />
                         <Route path='profile' element={<Profile />} />
                         <Route path='add-fond' element={<AddFond />} />
+                        <Route path='donation' element={<Donation />} />
+                        <Route path='settings' element={<Settings />} />
                     </Route>
                     <Route path="about" exact element={<Contacts />} />
                     <Route path="/fonds" exact element={<Fonds />} />

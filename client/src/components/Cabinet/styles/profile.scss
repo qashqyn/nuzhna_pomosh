@@ -13,7 +13,7 @@
         p{
             padding: 0;
             margin: 0;
-            font-size: 18px;
+            font-size: 16px;
             color: #999999;
         }
         span{
@@ -40,10 +40,35 @@
             border-bottom: rgba($color: #9999, $alpha: .2) solid 1px;
             margin-bottom: 20px;
         }
-        .donation, .event{
+        .donations, .events{
             display: flex;
-            .date{
-                margin-left: auto;
+            flex-direction: column;
+            gap: 10px;
+            .donation, .event{
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                &:hover{
+                    .title, .fond{
+                        color: #e65639;
+                    }
+                }
+                .title, .fond{
+                    font-weight: 500;
+                    margin-right: 20px;
+                }
+                .date{
+                    font-size: 14px;
+                    margin-left: auto;
+                }
+                .status{
+                    margin-left: auto;
+                    color: red;
+                    &.true{
+                        font-size: 14px;
+                        color: green;
+                    }
+                }
             }
         }
     }
