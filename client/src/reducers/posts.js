@@ -1,9 +1,9 @@
-import { CREATE_FOND, DELETE_FOND, FETCH_ALL_FONDS, LIKE, UPDATE_FOND, FETCH_ONE_FOND, START_LOADING, END_LOADING, FETCH_ALL_EVENTS, FETCH_ONE_EVENT, CREATE_EVENT, DELETE_EVENT, FETCH_DONATIONS, DONATE, CLEAR, CLEAR_STATUS } from "../constants/actionTypes";
+import { CREATE_FOND, DELETE_FOND, FETCH_ALL_FONDS, LIKE, UPDATE_FOND, FETCH_ONE_FOND, START_LOADING, END_LOADING, FETCH_ALL_EVENTS, FETCH_ONE_EVENT, CREATE_EVENT, DELETE_EVENT, FETCH_DONATIONS, DONATE, CLEAR, CLEAR_STATUS, REQUEST, QUESTION } from "../constants/actionTypes";
 
 const postsReducers = (state = { isLoading: true, fonds: [], events: [], fond: null, event: null, donations: null }, action) => {
     switch (action.type) {
         case CLEAR:
-            return { isLoading: true, fonds: [], events: [], fond: null, event: null, donations: null };
+            return { isLoading: true, fonds: [], events: [], fond: null, event: null, donations: null, request_status: null, question_status: null };
         case CLEAR_STATUS:
             return {...state, donate_status: null, fond_status: null, event_status: null};
         case START_LOADING:
@@ -33,6 +33,10 @@ const postsReducers = (state = { isLoading: true, fonds: [], events: [], fond: n
             return { ...state, donations: action.payload.data};
         case DONATE:
             return { ...state, donate_status: action.payload.status};
+        case REQUEST:
+            return {...state, request_status: action.payload.status};
+        case QUESTION:
+            return {...state, question_status: action.payload.status};
         default:
             return state;
     }

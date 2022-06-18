@@ -24,7 +24,7 @@ const EventCard = ({event}) => {
                             </div>
                             <div>
                                 <p>Мақсат</p>
-                                <span>{event.cashgoal === 0 ? `∞` : `${event.cashgoal} ₸`}</span>
+                                <span>{event.cashgoal === '0' ? `∞` : `${event.cashgoal} ₸`}</span>
                             </div>
                         </div>
                     </Card.Body>

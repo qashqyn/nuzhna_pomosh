@@ -9,6 +9,7 @@ import '../../styles/fonds.scss';
 
 import FondCard from "./FondCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useSearchParams } from "react-router-dom";
 
 const categories = ['Барлығына','Ересектерге','Балаларға','Әйелдерге','Жануарлар','Қоғамға','Жасөспірімдерге','Қарттарға','Отбасыларға','Экологияға']
 const locations = ["Алматы", "Нұр-Сұлтан", "Шымкент", "Ақтөбе", "Қарағанды", "Тараз", "Павлодап", "Семей", "Өскемен", "Қызылорда", "Орал", "Қостанай", "Атырау", "Петропавл", "Ақтау", "Көкшетау", "Талдықорған"];
@@ -16,6 +17,7 @@ const locations = ["Алматы", "Нұр-Сұлтан", "Шымкент", "А�
 const formInitial = {search: '', location: ''};
 
 const Fonds = () => {
+    const [searchParams] = useSearchParams();
     const { fonds, isLoading } = useSelector((state) => state.posts)
     const [ formData, setFormData ] = useState(formInitial);
     const [ selectedCat, setSelectedCat ] = useState([]);
@@ -26,7 +28,7 @@ const Fonds = () => {
         e.preventDefault();
 
         if(formData.search || formData.location || selectedCat.length>0)
-            dispatch(searchFonds(formData.search, formData.location, selectedCat.join(',')))
+            dispatch(searchFonds(formData.search, formData.location, selectedCat.join(',')));
         else
             dispatch(getFonds());
     }
@@ -43,8 +45,17 @@ const Fonds = () => {
         setFormData({...formData, [e.target.name]: e.target.value});
     }
 
+    useEffect(()=>{
+        if(searchParams && searchParams.get('search')){
+            console.log(searchParams.get('search'))
+            setFormData({...formData, search: searchParams.get('search')});
+            dispatch(searchFonds(searchParams.get('search'), '', ''));
+        }
+    }, [searchParams]);
+
     useEffect(() => {
-        dispatch(getFonds());
+        if(!searchParams || !searchParams.get('search'))
+            dispatch(getFonds());
     }, [dispatch]);
 
     return (
@@ -56,7 +67,7 @@ const Fonds = () => {
                 <Form onSubmit={search}>
                     <div className="d-flex mb-3">
                         <div className="search">
-                            <Form.Control type="text" onChange={queryChange} placeholder="Қордың аты..." name="search"/>
+                            <Form.Control type="text" value={formData.search} onChange={queryChange} placeholder="Қордың аты..." name="search"/>
                             <Button type="submit">
                                 <FontAwesomeIcon icon={['fas', 'magnifying-glass']} size="lg" />
                             </Button>

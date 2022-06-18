@@ -147,7 +147,7 @@ const EventDetails = () => {
                                 <Nav.Item>
                                     <Nav.Link>
                                         <p>Мақсат</p>
-                                        <span>{event.cashgoal === 0 ? `∞` : `${event.cashgoal} ₸`}</span>
+                                        <span>{event.cashgoal === '0' ? `∞` : `${event.cashgoal} ₸`}</span>
                                     </Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item>

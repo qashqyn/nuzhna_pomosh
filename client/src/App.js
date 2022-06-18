@@ -53,8 +53,8 @@ const App = () => {
                     <Route path='/events' exact element={<Events />} />
                     <Route path='/events/add' exact element={<AddEvent />} />
                     <Route path='/events/:id' element={<EventDetails />} /> 
+                    <Route path='*' element={<Page404 />}/>
                 </Route>
-                <Route path='*' element={<Page404 />}/>
             </Routes>
         </BrowserRouter>
     );

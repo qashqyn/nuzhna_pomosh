@@ -56,26 +56,24 @@ const NavBar = () => {
                     <LinkContainer to="partners">
                         <Nav.Link>Серіктестер</Nav.Link>
                     </LinkContainer>
-                    {/* <LinkContainer to="contacts#contact-list"> */}
-                        <Nav.Link href="/contacts#contact-list">Бізбен байланыс</Nav.Link>
-                    {/* </LinkContainer> */}
+                    <Nav.Link href="/contacts#contact-list">Бізбен байланыс</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
-            <LinkContainer to="">
+            {/* <LinkContainer to="">
                 <Navbar.Brand className="icon">
                     <FontAwesomeIcon icon={['fas', 'magnifying-glass']} size="lg" />
                 </Navbar.Brand>
-            </LinkContainer>
+            </LinkContainer> */}
             <LinkContainer to={(profile && profile.user) ? '/cabinet/profile' : '/auth'}>
                 <Navbar.Brand className="icon">
                     <FontAwesomeIcon icon={['far', 'user']} size="lg" />
                 </Navbar.Brand>
             </LinkContainer>
-            <LinkContainer to="/">
+            {/* <LinkContainer to="/">
                 <Navbar.Brand >
                     Бізге көмек
                 </Navbar.Brand>
-            </LinkContainer>
+            </LinkContainer> */}
         </Navbar>
     );
 };

@@ -3,7 +3,6 @@ import { AUTH, LOGOUT, USER_EXISTS,CLEAR_USER_EXISTS, UPDATE_USER } from '../con
 const authReducer = (state = {authData: null, userExists: null}, action) => {
     switch(action.type){
         case AUTH:
-            console.log(action);
             if(action.data){
                 localStorage.setItem('profile', JSON.stringify({...action.data}));
             }

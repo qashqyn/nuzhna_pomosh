@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import {useSearchParams, useNavigate} from 'react-router-dom'
 
-import { Col, Container, Form, Image, Nav, Row, Spinner, Button } from "react-bootstrap";
+import { Col, Container, Form, Image, Nav, Row, Spinner, Button, Modal} from "react-bootstrap";
 
 import '../../styles/addEvent.scss';
 import { useState } from "react";
@@ -23,7 +23,7 @@ const AddEvent = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const {status} = useSelector((state) => state.posts);
+    const {event_status} = useSelector((state) => state.posts);
 
     const [formData, setFormData] = useState(initialState);
     const [formError, setFormError] = useState({...initialState, terms: ''});
@@ -52,10 +52,10 @@ const AddEvent = () => {
     }, [fondId]);
 
     useEffect(()=>{
-        if(status && status === 200){
+        if(event_status && event_status === 200){
             navigate(`/fonds/${fondId}`);
         }
-    }, [status]);
+    }, [event_status]);
 
     const handleChange = (e) => {
         e.preventDefault();

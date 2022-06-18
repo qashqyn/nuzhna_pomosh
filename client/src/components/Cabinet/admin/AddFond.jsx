@@ -20,6 +20,7 @@ const AddFond = () => {
     const [formData, setFormData] = useState(initialData);
     const [formError, setFormError] = useState(initialData);
 
+    const [profile, setProfile] = useState(JSON.parse(localStorage.getItem('profile')));
     const navigate = useNavigate();
 
     const {fond_status, fond} = useSelector((state) => state.posts);
@@ -35,6 +36,12 @@ const AddFond = () => {
     }, [searchParams]);
 
     useEffect(()=>{
+        if(profile && profile.user && !profile.user._admin){
+            navigate(-1);
+        }
+    }, [profile])
+
+    useEffect(()=>{
         if(fond_status){
             switch(fond_status){
                 case 200:
@@ -45,7 +52,7 @@ const AddFond = () => {
     }, [fond_status]);
 
     useEffect(() => {
-        if(fond){
+        if(searchParams && searchParams.get('fondId') && fond){
             setFormData(fond);
         }
     }, [fond]);

@@ -8,11 +8,19 @@ import FondsImg from '../images/home-fonds.png';
 import KitapImg from '../images/home-kitap.png';
 import VolunteerImg from '../images/home-volunteer.png';
 import HandsImg from '../images/hands.png';
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const Home = () => {
+    const navigate = useNavigate();
+    const [searchValue, setSearchValue] = useState('');
+    const handleChange = (e) => {
+        e.preventDefault();
+        setSearchValue(e.target.value);
+    }
     const search = (e) =>{
         e.preventDefault();
-        console.log(e.target.value);
+        navigate(`/fonds?search=${searchValue}`);
     }
     return (
         <div id="home">
@@ -22,7 +30,7 @@ const Home = () => {
                 <div className="content">
                     <h1>Қайырымдылық қорларын іздеу қосымшасы</h1>
                     <Form onSubmit={search} className="search">
-                        <Form.Control type="text" placeholder="Қордың аты..." name="search" required />
+                        <Form.Control type="text" value={searchValue} placeholder="Қордың аты..." name="search" onChange={handleChange} />
                         <Button type="submit">
                             <FontAwesomeIcon icon={['fas', 'magnifying-glass']} size="lg" />
                         </Button>

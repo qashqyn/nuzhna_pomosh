@@ -24,3 +24,6 @@ export const END_LOADING = 'END_LOADING';
 
 export const CLEAR = 'CLEAR';
 export const CLEAR_STATUS = 'CLEAR_STATUS';
+
+export const REQUEST = 'REQUEST';
+export const QUESTION = 'QUESTION';

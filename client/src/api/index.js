@@ -1,12 +1,9 @@
 import axios from "axios";
-import qs from 'qs';
 
 const API = axios.create({
     baseURL: 'http://localhost:5000/api', 
-    headers: {
-        "Access-Control-Allow-Origin": "*",
-        'Access-Control-Allow-Headers':  'Content-Type, X-Auth-Token, Authorization, Origin',
-        'Access-Control-Allow-Methods': ' POST, PUT, GET, PATCH'
+    validateStatus: function (status) { 
+        return true 
     }
 });
 
@@ -38,3 +35,7 @@ export const isExists = (email) => API.post(`/users/ifexists?email=${email}`);
 export const updateUser = (formData) => API.post(`/users/${formData.id}/update-user`, formData);
 export const signIn = (formData) => API.post('/login', formData);
 export const signUp = (formData) => API.post('/signup', formData);
+
+// QUESTION
+export const sendQuestion = (formData) => API.post('/send-question-email', formData);
+export const sendRequest = (formData) => API.post('/send-request-email', formData);
